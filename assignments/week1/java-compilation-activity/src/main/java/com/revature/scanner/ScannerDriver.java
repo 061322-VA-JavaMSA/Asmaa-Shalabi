@@ -48,7 +48,7 @@ public class ScannerDriver {
 		sc.nextLine();
 		switch(x) {
 		case 1:
-			System.out.println(Math.random());
+			System.out.println(Math.round(Math.random())*100);
 			break;
 		case 2:
 			System.out.println("Enter your String");
