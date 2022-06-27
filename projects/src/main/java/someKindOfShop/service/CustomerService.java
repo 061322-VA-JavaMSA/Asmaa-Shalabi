@@ -23,7 +23,7 @@ public class CustomerService {
 	
 	public Customer createUser(Customer u) {
 		// logic to validate u
-		// if ok
+		
 //		u = ud.createUser(u);
 		Customer user = ud.createUser(u);
 		log.info("Customer: " + user + " was created.");
@@ -43,6 +43,12 @@ public class CustomerService {
 		return c;}
 	public int getUserId(String username) {
 		return ud.retrieveUserByUsername(username).getId();
+	}
+	public boolean addpayments(int amount, int cId) {
+		return ud.addpayments(amount, cId);
+	}
+	public int getBalance(int id) {
+		return ud.getBalance(id);
 	}
 
 }

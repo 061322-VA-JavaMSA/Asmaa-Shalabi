@@ -6,6 +6,7 @@ public class Customer {
 	private String uname;
 	private String pass;
 	private int id;
+	private int balance;
 	public String getUname() {
 		return uname;
 	}
@@ -50,6 +51,12 @@ public class Customer {
 	}
 	public Customer() {
 		// TODO Auto-generated constructor stub
+	}
+	public int getBalance() {
+		return balance;
+	}
+	public void setBalance(int balance) {
+		this.balance = balance;
 	}
 
 }

@@ -14,5 +14,7 @@ public interface CustomerDAO {
 	boolean deleteUserById(int id);
 	Customer createUser(Customer e);
 	boolean updateUser(Customer e);
+	boolean addpayments(int amount, int cId);
+	int getBalance(int cId);
 
 }

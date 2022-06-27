@@ -32,5 +32,10 @@ private OfferDAO td = new OfferPostgres();
 	public boolean rejectOffer(int id) {
 		return td.rejectAllOffersByItemId(id);
 	}
-
+	public int getAmount(int cId,int iId) {
+		return td.getAmount(cId,iId);
+	}
+	public List<Offers> getAcceptedOffers(){
+		return td.retrieveAcceptedOffers();
+	}
 }

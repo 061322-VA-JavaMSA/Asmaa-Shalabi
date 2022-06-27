@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import someKindOfShop.shoppingList.Offers;
 import someKindOfShop.user.Customer;
 import someKindOfShop.util.ConnectionUtil;
 
@@ -89,6 +90,31 @@ public class CustomerPostgres implements CustomerDAO{
 		
 		return users;
 	}
+	public boolean addpayments(int amount, int cId) {
+		Customer e = retrieveUserById(cId);
+		int oldBalance = getBalance(cId);
+		int newBalance = oldBalance + amount;
+		String sql = "update customer set balance = ? where id = ?;";
+		int rowsChanged = -1;
+		
+		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
+			PreparedStatement ps = c.prepareStatement(sql);
+			
+			ps.setInt(1, newBalance);
+			ps.setInt(2, e.getId());
+			
+			rowsChanged = ps.executeUpdate();
+			
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}
+		
+		if(rowsChanged < 1) {
+			return false;
+		}
+		return true;
+	}
 
 	@Override
 	public Customer retrieveUserByUsername(String username) {
@@ -163,6 +189,28 @@ public class CustomerPostgres implements CustomerDAO{
 			return false;
 		}
 		return true;
+	}
+	@Override
+	public int getBalance(int cId) {
+		int amnt=0;
+		String sql = "select balance from customer where id=? ;";
+		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setInt(1, cId);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+			
+			Customer o=new Customer();
+			o.setBalance(rs.getInt("balance"));
+			amnt= o.getBalance();
+			}
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return amnt;
+		
 	}
 }
 

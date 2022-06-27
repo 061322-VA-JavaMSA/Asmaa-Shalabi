@@ -64,6 +64,34 @@ public class OfferPostgres implements OfferDAO {
 		
 		return items;
 	}
+	@Override
+	public List<Offers> retrieveAcceptedOffers() {
+		String sql = "select * from offer where accepted = true;";
+		List<Offers> items = new ArrayList<>();
+		
+		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
+			// no user input taken, no need for prepared statement
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+			
+			while(rs.next()) {
+				// extract each field from rs for each record, map them to a User object and add them to the users arrayliost
+				Offers u = new Offers();
+				u.setId(rs.getInt("id"));
+				u.setCustomerId(rs.getInt("c_id"));
+				u.setItemId(rs.getInt("i_id"));
+				u.setAmount(rs.getInt("amount"));
+				u.setAccepted(rs.getBoolean("accepted"));
+				
+				items.add(u);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return items;
+	}
 
 	@Override
 	public Offers retrieveOfferById(int id) {
@@ -190,6 +218,29 @@ public class OfferPostgres implements OfferDAO {
 			return false;
 		}
 		return true;
+	}
+	@Override
+	public int getAmount(int cId,int iId) {
+		int amnt=0;
+		String sql = "select amount from offer where c_id=? and i_id = ? ;";
+		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setInt(1, cId);
+			ps.setInt(2, iId);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+			
+			Offers o=new Offers();
+			o.setAmount(rs.getInt("amount"));
+			amnt= o.getAmount();
+			}
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return amnt;
+		
 	}
  
 

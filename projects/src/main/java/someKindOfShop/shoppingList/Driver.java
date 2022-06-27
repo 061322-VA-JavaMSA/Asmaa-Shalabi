@@ -62,7 +62,7 @@ public class Driver {
 					for(Items item: items ) {
 						System.out.println(item);
 					}
-					System.out.println("select 1 for making an offer, 2 to see your cart");
+					System.out.println("select 1 for making an offer, 2 to see your cart, 3 to see your remaining payments");
 					int in = scan.nextInt();
 					switch (in){
 					case 1:
@@ -81,7 +81,10 @@ public class Driver {
 							}
 					
 						break;
-						default:
+					case 3:
+						System.out.println(cs.getBalance(cs.getUserId(c_username)));				
+						break;
+					default:
 							break;
 							}
 					
@@ -112,7 +115,7 @@ public class Driver {
 				
 				try {
 					log.info(eas.login(e_username, e_password));
-					System.out.println("select 1 to add an item OR select 2 to remove item: OR 3 to view offers");
+					System.out.println("select 1 to add an item OR select 2 to remove item: OR 3 to view offers OR 4 to see all payments");
 					int select = scan.nextInt();
 					switch (select) {
 					case 1:
@@ -142,6 +145,7 @@ public class Driver {
 							os.updateOffer(cuId, itId,true);
 							is.updateOwnedState(cuId, itId);
 							os.rejectOffer(itId);
+							cs.addpayments(os.getAmount(cuId,itId), cuId);
 						}
 						if(pick == 2) {
 							System.out.println("select customer id and item id for the offer you want to reject");
@@ -149,6 +153,13 @@ public class Driver {
 							int itId = scan.nextInt();
 							os.updateOffer(cuId, itId,false);
 						}
+						break;
+					case 4:
+						List<Offers> acceptedOffer = os.getAcceptedOffers();
+						for(Offers o: acceptedOffer ) {
+							System.out.println(o.getAmount());
+						}
+						break;
 						
 					}
 					

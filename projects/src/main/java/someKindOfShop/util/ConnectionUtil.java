@@ -48,7 +48,7 @@ public class ConnectionUtil {
 		
 		String url = "jdbc:postgresql://database-1.cs5pbm169msw.us-west-1.rds.amazonaws.com:5432/postgres";
 				//System.getenv("DB_URL");
-		System.out.println(url);
+		
 		String username = "postgres";
 		String password = "As1062013";
 		//String username = System.getenv("DB_USER");

@@ -14,6 +14,8 @@ public interface OfferDAO {
 	boolean deleteOffer(int id);
 	boolean updateAcceptedState(int cId, int iId, boolean acc);
 	boolean rejectAllOffersByItemId(int iId);
+	int getAmount(int cId, int iId);
+	List<Offers> retrieveAcceptedOffers();
 	
 
 }
