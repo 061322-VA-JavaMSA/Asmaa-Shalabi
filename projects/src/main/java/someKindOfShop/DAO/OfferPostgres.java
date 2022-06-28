@@ -1,13 +1,16 @@
 package someKindOfShop.DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import someKindOfShop.shoppingList.Items;
 import someKindOfShop.shoppingList.Offers;
 import someKindOfShop.user.Customer;
 import someKindOfShop.util.ConnectionUtil;
@@ -82,7 +85,7 @@ public class OfferPostgres implements OfferDAO {
 				u.setItemId(rs.getInt("i_id"));
 				u.setAmount(rs.getInt("amount"));
 				u.setAccepted(rs.getBoolean("accepted"));
-				
+		
 				items.add(u);
 			}
 		} catch (SQLException e) {
@@ -92,10 +95,79 @@ public class OfferPostgres implements OfferDAO {
 		
 		return items;
 	}
+	public List<Integer> retrieveWeeklyPay(Date sd,Date ed){
+		
+		String sql="select amount from offer where offer_date >= ? and offer_date <= ?;";
+         List<Integer> payments = new ArrayList<>();
+		
+		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
+			PreparedStatement ps = c.prepareStatement(sql);
+			
+			ps.setDate(1, sd); // this refers to the 1st ? in the sql String
+			ps.setDate(2, ed);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Offers offer = new Offers();
+				offer.setAmount(rs.getInt("amount"));
+				payments.add(offer.getAmount());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return payments;
+		
+	}
+	@Override
+	public int sumOfPayments() {
+		String sql = "select sum(amount) as total from offer where accepted = true;";
+		int total = 0;
+		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
+			PreparedStatement ps = c.prepareStatement(sql);		
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				total = rs.getInt("total");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return total;
+	}
+	@Override
+	public boolean setAcceptedDate(int cId,int iId,Date d) {
+		
+		String sql = "update offer set offer_date = ? where accepted=true and c_id = ? and i_id=?;";
+		int rowsChanged = -1;
+		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setDate(1,d);
+			ps.setInt(2,cId);
+			ps.setInt(3,iId);
+			
+		
+			
+			rowsChanged = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if(rowsChanged < 1) {
+			return false;
+		}
+		return true;
+		
+	}
 
 	@Override
 	public Offers retrieveOfferById(int id) {
-		String sql = "select * from offers where id = ?;";
+		String sql = "select * from offer where id = ?;";
 		Offers offer = null;
 		
 		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
@@ -241,6 +313,34 @@ public class OfferPostgres implements OfferDAO {
 		
 		return amnt;
 		
+	}
+
+	@Override
+	public List<Items> retrieveItemByUserId(int userId) {
+		String sql = "select t.i_id, c.i_name, c.owned_state from offer t join items c on t.i_id = c.id where t.c_id = ?;";
+		List<Items> items = new ArrayList<>();
+		
+		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setInt(1, userId);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Items t = new Items();
+				t.setId(rs.getInt("i_id"));
+				t.setName(rs.getString("i_name"));
+				//t.setDueDate(rs.getDate("due_date").toLocalDate()); // rs.getDate returns a date that we have to convert to a local date
+				t.setOwenedStatus(rs.getString("owned_state"));
+			
+				
+				items.add(t);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return items;
 	}
  
 

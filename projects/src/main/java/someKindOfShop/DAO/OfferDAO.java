@@ -1,5 +1,6 @@
 package someKindOfShop.DAO;
 
+import java.sql.Date;
 import java.util.List;
 
 import someKindOfShop.shoppingList.Items;
@@ -16,6 +17,10 @@ public interface OfferDAO {
 	boolean rejectAllOffersByItemId(int iId);
 	int getAmount(int cId, int iId);
 	List<Offers> retrieveAcceptedOffers();
+	boolean setAcceptedDate( int cId,int iId,Date d);
+	List<Integer> retrieveWeeklyPay(Date sd,Date ed);
+	List<Items> retrieveItemByUserId(int userId);
+	int sumOfPayments();
 	
 
 }

@@ -1,5 +1,6 @@
 package someKindOfShop.shoppingList;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Offers {
@@ -7,6 +8,7 @@ public class Offers {
 	private int itemId;
 	 private int amount;
 	 private boolean accepted;
+	 private Date date;
 	public Offers(int customerId, int itemId, int amount) {
 		this.customerId=customerId;
 		this.itemId=itemId;
@@ -71,6 +73,12 @@ public class Offers {
 	}
 	public void setAccepted(boolean accepted) {
 		this.accepted = accepted;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 

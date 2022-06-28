@@ -16,6 +16,7 @@ username varchar(50) NOT NULL UNIQUE,
 password varchar(30) not null,
 balance integer
 );
+select * from customer ;
 drop table if exists items;
 
 create table if not exists items(
@@ -31,28 +32,29 @@ id serial primary key,
 c_id integer references customer(id),
 i_id integer references items(id),
 amount integer,
-accepted boolean
+accepted boolean,
+offer_date date
 );
 
-
+update offer set offer_date = '2022-06-10' where accepted=true;
 insert into offer (c_id, i_id,amount) values (1, 2, 158.28);
 insert into offer (c_id, i_id,amount) values (1, 1, 158.28);
 insert into offer (c_id, i_id,amount) values (2, 2, 158.28);
 insert into offer (c_id, i_id,amount) values (3, 2, 158.28);
 insert into offer (c_id, i_id,amount) values (4, 1, 158.28);
-insert into offer (c_id, i_id,amount) values (5, 7, 158.28);
+insert into offer (c_id, i_id,amount) values (2, 7, 158.28);
 
-insert into items (id, i_name, price) values (1, 'Lid - 10,12,16 Oz', 158.28);
-insert into items (id, i_name, price) values (2, 'Bread - Roll, Whole Wheat', 872.93);
-insert into items (id, i_name, price) values (3, 'Tuna - Fresh', 931.49);
-insert into items (id, i_name, price) values (4, 'Parsley - Dried', 393.03);
-insert into items (id, i_name, price) values (5, 'Plastic Arrow Stir Stick', 825.38);
-insert into items (id, i_name, price) values (6, 'Jam - Strawberry, 20 Ml Jar', 992.36);
-insert into items (id, i_name, price) values (7, 'Pasta - Penne, Rigate, Dry', 523.09);
-insert into items (id, i_name, price) values (8, 'Pop - Club Soda Can', 160.21);
-insert into items (id, i_name, price) values (9, 'Tuna - Bluefin', 635.03);
-insert into items (id, i_name, price) values (10, 'Pastry - Choclate Baked', 184.44);
-insert into items (id, i_name, price) values (11, 'Wine - White, Ej', 644.96);
+insert into items ( i_name, price) values ('Lid - 10,12,16 Oz', 158.28);
+insert into items ( i_name, price) values ( 'Bread - Roll, Whole Wheat', 872.93);
+insert into items ( i_name, price) values ('Tuna - Fresh', 931.49);
+insert into items ( i_name, price) values ( 'Parsley - Dried', 393.03);
+insert into items ( i_name, price) values ( 'Plastic Arrow Stir Stick', 825.38);
+insert into items ( i_name, price) values ( 'Jam - Strawberry, 20 Ml Jar', 992.36);
+insert into items ( i_name, price) values ( 'Pasta - Penne, Rigate, Dry', 523.09);
+insert into items ( i_name, price) values ( 'Pop - Club Soda Can', 160.21);
+insert into items ( i_name, price) values ( 'Tuna - Bluefin', 635.03);
+insert into items ( i_name, price) values ( 'Pastry - Choclate Baked', 184.44);
+insert into items ( i_name, price) values ( 'Wine - White, Ej', 644.96);
 insert into items (id, i_name, price) values (12, 'Crab Meat Claw Pasteurise', 171.00);
 insert into items (id, i_name, price) values (13, 'Milk - Chocolate 500ml', 798.39);
 insert into items (id, i_name, price) values (14, 'Tuna - Sushi Grade', 373.90);
@@ -149,7 +151,10 @@ insert into items (i_name, price) values ('dvalenta1', '45678');
 select * from items;
 insert into employee (username, password) values ('aliaa', '12345');
 select * from offer;
-update offer set accepted = 'false' where c_id = 1 and i_id=2;
+select amount from offer where offer_date >'2022-06-22' and offer_date <= '2022-06-28';
+
+select * from customer where id = 2;
+update offer set accepted = 'false' ;
 delete from offer where i_id=2 and accepted !='false';
 delete from offer where i_id=2 and (accepted = false or accepted is null) ;
 insert into employee (username, password) values ('asmaa', '12345');

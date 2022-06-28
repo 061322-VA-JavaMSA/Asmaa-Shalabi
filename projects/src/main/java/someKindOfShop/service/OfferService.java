@@ -1,11 +1,13 @@
 package someKindOfShop.service;
 
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import someKindOfShop.DAO.OfferDAO;
 import someKindOfShop.DAO.OfferPostgres;
-
+import someKindOfShop.shoppingList.Items;
 import someKindOfShop.shoppingList.Offers;
 
 public class OfferService {
@@ -37,5 +39,19 @@ private OfferDAO td = new OfferPostgres();
 	}
 	public List<Offers> getAcceptedOffers(){
 		return td.retrieveAcceptedOffers();
+	}
+	public boolean seDate(int cId,int iId,Date ld) {
+		return td.setAcceptedDate(cId,iId,ld);
+	}
+	public List<Integer> retrieveWeeklyPayments(Date sd,Date ed){
+		return td.retrieveWeeklyPay(sd,ed);
+	}
+	public List<Items> getCustomerItem(int userId) {
+		return td.retrieveItemByUserId(userId);
+		// TODO Auto-generated method stub
+	
+	}
+	public int allPayments() {
+		return td.sumOfPayments();
 	}
 }
