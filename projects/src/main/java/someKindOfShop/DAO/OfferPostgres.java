@@ -179,10 +179,11 @@ public class OfferPostgres implements OfferDAO {
 			
 			if(rs.next()) {
 				offer = new Offers();
-				offer.setItemId(rs.getInt("item_id"));
-				offer.setCustomerId(rs.getInt("customer_id"));
+				offer.setItemId(rs.getInt("i_id"));
+				offer.setCustomerId(rs.getInt("c_id"));
 				offer.setAmount(rs.getInt("amount"));
 				offer.setAccepted(rs.getBoolean("accepted"));
+				offer.setId(rs.getInt("id"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

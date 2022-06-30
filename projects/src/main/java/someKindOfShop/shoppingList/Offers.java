@@ -9,6 +9,7 @@ public class Offers {
 	 private int amount;
 	 private boolean accepted;
 	 private Date date;
+	 private int id;
 	public Offers(int customerId, int itemId, int amount) {
 		this.customerId=customerId;
 		this.itemId=itemId;
@@ -64,10 +65,7 @@ public class Offers {
 		this.customerId = int1;
 		
 	}
-	public void setId(int int1) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	public boolean isAccepted() {
 		return accepted;
 	}
@@ -79,6 +77,12 @@ public class Offers {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 

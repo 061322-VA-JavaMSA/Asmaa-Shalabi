@@ -19,10 +19,13 @@ private OfferDAO td = new OfferPostgres();
 	}
 	public Offers createOffer(int c,int i,int amount) {
 		Offers o = new Offers(c,i,amount);
-		System.out.println(i);
+		
 		return td.addOffer(o);
 	}
-	public List<Offers> getOffer(int id) {
+	public Offers createOffers(Offers o) {
+		return td.addOffer(o);
+	}
+	public List<Offers> getOfferByUserId(int id) {
 		return td.retrieveOfferByUserId(id);
 	}
 	public List<Offers> getoffers(){
@@ -53,5 +56,8 @@ private OfferDAO td = new OfferPostgres();
 	}
 	public int allPayments() {
 		return td.sumOfPayments();
+	}
+	public Offers getOfferById(int id) {
+		return td.retrieveOfferById(id);
 	}
 }

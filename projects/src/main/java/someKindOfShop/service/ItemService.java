@@ -28,4 +28,7 @@ private ItemDAO td = new ItemPostgres();
 		Items t = getItemById(iId);
 		return td.updateItemById(t,cId,iId);
 	}
+	public Items addItems(Items t) {
+		return td.addItem(t);
+	}
 }

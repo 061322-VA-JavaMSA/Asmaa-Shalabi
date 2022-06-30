@@ -29,6 +29,9 @@ public class CustomerService {
 		log.info("Customer: " + user + " was created.");
 		return user;
 	}
+	public Customer retrieveCustomerById(int id) {
+		return ud.retrieveUserById(id);
+	}
 
 	public Customer login(String username, String password) {
 		

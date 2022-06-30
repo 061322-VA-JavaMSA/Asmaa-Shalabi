@@ -215,7 +215,7 @@ public class ItemPostgres implements ItemDAO{
 			rowsChanged = ps.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -230,8 +230,7 @@ public class ItemPostgres implements ItemDAO{
 		int rowsChanged = -1;
 		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
 			PreparedStatement ps = c.prepareStatement(sql);
-			
-			ps.setString(1, name);
+			ps.setString(1,name);
 			
 			rowsChanged = ps.executeUpdate();
 			
