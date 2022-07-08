@@ -9,9 +9,9 @@
     <!-- configuration for session factory -->
     <session-factory>
     	<!-- Showing credentials is bad practice -->
-		<property name="hibernate.connection.url">jdbc:postgresql://database-1.cllvqmegtmuc.us-east-1.rds.amazonaws.com:5432/postgres</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://database-1.cs5pbm169msw.us-west-1.rds.amazonaws.com:5432/postgres</property>
 		<property name="hibernate.connection.username">postgres</property>
-		<property name="hibernate.connection.password">p4ssw0rd</property>
+		<property name="hibernate.connection.password">As1062013</property>
 		
 		<property name="hibernate.driver_class">org.postgresql.Driver</property>
 		<property name="hibernate.connection.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
@@ -21,8 +21,11 @@
 		<property name="hibernate.hbm2ddl.auto">validate</property>
 		
 		
-		<mapping class="com.revature.models.User"></mapping>
-		<mapping class="com.revature.models.Task"></mapping>
+		<mapping class="com.revature.models.Employee"></mapping>
+		<mapping class="com.revature.models.Rem_status"></mapping>
+		<mapping class="com.revature.models.Rem_type"></mapping>
+		<mapping class="com.revature.models.Rem"></mapping>
+		<mapping class="com.revature.models.Role"></mapping>
     </session-factory>
 
 </hibernate-configuration>

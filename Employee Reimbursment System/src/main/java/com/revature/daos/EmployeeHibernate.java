@@ -6,7 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 
-import com.revature.models.User;
+import com.revature.models.Employee;
+
 import com.revature.util.HibernateUtil;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -14,10 +15,10 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
-public class UserHibernate implements UserDAO {
+public class EmployeeHibernate implements EmployeeDAO {
 
 	@Override
-	public User insertUser(User u) {
+	public Employee insertEmployee(Employee u) {
 		u.setId(-1);
 		try(Session s = HibernateUtil.getSessionFactory().openSession()){
 			Transaction tx = s.beginTransaction();
@@ -31,11 +32,11 @@ public class UserHibernate implements UserDAO {
 	}
 
 	@Override
-	public User getUserById(int id) {
-		User user = null;
+	public Employee getUserById(int id) {
+		Employee user = null;
 		
 		try(Session s = HibernateUtil.getSessionFactory().openSession();){
-			user = s.get(User.class, id);
+			user = s.get(Employee.class, id);
 		}
 		
 //		try(Session s = HibernateUtil.getSessionFactory().openSession();){
@@ -49,16 +50,16 @@ public class UserHibernate implements UserDAO {
 	}
 
 	@Override
-	public User getUserByUsername(String username) {
-		User user = null;
+	public Employee getUserByUsername(String username) {
+		Employee user = null;
 		
 		try(Session s = HibernateUtil.getSessionFactory().openSession();){
 			// SELECT * FROM USERS WHERE USERNAME = '';
 			
 			CriteriaBuilder cb = s.getCriteriaBuilder();
-			CriteriaQuery<User> cq = cb.createQuery(User.class);
+			CriteriaQuery<Employee> cq = cb.createQuery(Employee.class);
 			// define entity to be searched
-			Root<User> root = cq.from(User.class);
+			Root<Employee> root = cq.from(Employee.class);
 			
 			//define conditions
 			Predicate predicateForUsername = cb.equal(root.get("username"), username);
@@ -68,21 +69,23 @@ public class UserHibernate implements UserDAO {
 			cq.select(root).where(predicateForUsername);
 			
 			// retrieves the result
-			user = (User) s.createQuery(cq).getSingleResult();
+			user = (Employee) s.createQuery(cq).getSingleResult();
 		}
 		
 		return user;
 	}
 
 	@Override
-	public List<User> getUsers() {
-		List<User> users = null;
+	public List<Employee> getUsers() {
+		List<Employee> users = null;
 		
 		try(Session s = HibernateUtil.getSessionFactory().openSession()){
-			users = s.createQuery("from User", User.class).list();
+			users = s.createQuery("from Employee", Employee.class).list();
 		}
 		
 		return users;
 	}
+
+	
 
 }

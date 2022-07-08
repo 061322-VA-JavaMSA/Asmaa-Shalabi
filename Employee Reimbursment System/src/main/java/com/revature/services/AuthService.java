@@ -1,22 +1,24 @@
 package com.revature.services;
 
-import com.revature.daos.UserDAO;
-import com.revature.daos.UserPostgres;
+import com.revature.daos.EmployeeDAO;
+import com.revature.daos.EmployeePostgres;
+
 import com.revature.exceptions.LoginException;
 import com.revature.exceptions.UserNotFoundException;
-import com.revature.models.User;
+import com.revature.models.Employee;
+
 
 public class AuthService {
 
-	private UserDAO ud = new UserPostgres();
+	private EmployeeDAO ud = new EmployeePostgres();
 	
 	/*-
 	 * if the user is found by username and the password matches, returns that user
 	 */
-	public User login(String username, String password) throws UserNotFoundException, LoginException {
+	public Employee login(String username, String password) throws UserNotFoundException, LoginException {
 		
 		// principal refers to "currently logged in user"
-		User principal = ud.getUserByUsername(username);
+		Employee principal = ud.getUserByUsername(username);
 		
 		if(principal == null) {
 			throw new UserNotFoundException();

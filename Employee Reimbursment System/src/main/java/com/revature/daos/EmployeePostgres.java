@@ -8,16 +8,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.models.Employee;
 import com.revature.models.Role;
-import com.revature.models.User;
+
 import com.revature.util.ConnectionUtil;
 
-
-
-public class UserPostgres implements UserDAO{
+public class EmployeePostgres implements EmployeeDAO{
 
 	@Override
-	public User insertUser(User u) {
+	public Employee insertEmployee(Employee u) {
 		
 		/*-
 		 *  condition to see if user was successfully created
@@ -26,11 +25,16 @@ public class UserPostgres implements UserDAO{
 		 */
 		u.setId(-1);
 		
-		String sql = "insert into users (username, password, role) values (?,?,?) returning id;";
+		String sql = "insert into employee (username, password,first_name,last_name,email) values (?,?,?,?,?) returning id;";
 		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setString(1, u.getUsername());
 			ps.setString(2, u.getPassword());
+			ps.setString(3,u.getFirst_name());
+			ps.setString(4,u.getLast_name());
+			ps.setString(4, u.getEmail());
+			
+			
 			ps.setString(3, u.getRole().toString());
 			
 			ResultSet rs = ps.executeQuery(); 
@@ -46,9 +50,9 @@ public class UserPostgres implements UserDAO{
 	}
 
 	@Override
-	public User getUserById(int id){
-		String sql = "select * from users where id = ?;";
-		User user = null;
+	public Employee getUserById(int id){
+		String sql = "select * from employee where id = ?;";
+		Employee user = null;
 		
 		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
 			PreparedStatement ps = c.prepareStatement(sql);
@@ -58,10 +62,13 @@ public class UserPostgres implements UserDAO{
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				user = new User();
+				user = new Employee();
 				user.setId(rs.getInt("id"));
 				user.setUsername(rs.getString("username"));
 				user.setPassword(rs.getString("password"));
+				user.setFirst_name(rs.getString("first_name"));
+				user.setLast_name(rs.getString("last_name"));
+				user.setEmail(rs.getString("email"));
 				user.setRole(Role.valueOf(rs.getString("role")));
 			}
 		} catch (SQLException e) {
@@ -71,9 +78,9 @@ public class UserPostgres implements UserDAO{
 	}
 
 	@Override
-	public User getUserByUsername(String username){
-		String sql = "select * from users where username  = ?;";
-		User u = null;
+	public Employee getUserByUsername(String username){
+		String sql = "select * from employee where username  = ?;";
+		Employee u = null;
 		
 		try (Connection c = ConnectionUtil.getConnectionFromEnv();){
 			PreparedStatement ps = c.prepareStatement(sql);
@@ -83,10 +90,13 @@ public class UserPostgres implements UserDAO{
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				u = new User();
+				u = new Employee();
 				u.setId(rs.getInt("id"));
 				u.setUsername(rs.getString("username"));
 				u.setPassword(rs.getString("password"));
+				u.setFirst_name(rs.getString("first_name"));
+				u.setLast_name(rs.getString("last_name"));
+				u.setEmail(rs.getString("email"));
 				u.setRole(Role.valueOf(rs.getString("role")));
 			}
 			
@@ -98,19 +108,22 @@ public class UserPostgres implements UserDAO{
 	}
 
 	@Override
-	public List<User> getUsers() {
-		String sql = "select * from users;";
-		List<User> users = new ArrayList<>();
+	public List<Employee> getUsers() {
+		String sql = "select * from employee;";
+		List<Employee> users = new ArrayList<>();
 		
 		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
 			Statement s = c.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			
 			while(rs.next()) {
-				User u = new User();
+				Employee u = new Employee();
 				u.setId(rs.getInt("id"));
 				u.setUsername(rs.getString("username"));
 				u.setPassword(rs.getString("password"));
+				u.setFirst_name(rs.getString("first_name"));
+				u.setLast_name(rs.getString("last_name"));
+				u.setEmail(rs.getString("email"));
 				u.setRole(Role.valueOf(rs.getString("role")));
 				
 				users.add(u);
@@ -122,4 +135,6 @@ public class UserPostgres implements UserDAO{
 		return users;
 	}
 
+
 }
+

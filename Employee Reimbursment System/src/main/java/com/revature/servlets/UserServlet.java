@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.dtos.UserDTO;
+import com.revature.dtos.EmployeeDTO;
+
 import com.revature.exceptions.UserNotCreatedException;
 import com.revature.exceptions.UserNotFoundException;
+import com.revature.models.Employee;
 import com.revature.models.Role;
-import com.revature.models.User;
+
 import com.revature.services.UserService;
 import com.revature.util.CorsFix;
 
@@ -68,11 +70,11 @@ public class UserServlet extends HttpServlet {
 
 			if (session.getAttribute("userRole")!= null && session.getAttribute("userRole").equals(Role.ADMIN)) {
 				// retrieving users from db using UserService
-				List<User> users = us.getUsers();
-				List<UserDTO> usersDTO = new ArrayList<>();
+				List<Employee> users = us.getUsers();
+				List<EmployeeDTO> usersDTO = new ArrayList<>();
 
 				// converting Users to UserDTOs for data transfer
-				users.forEach(u -> usersDTO.add(new UserDTO(u)));
+				users.forEach(u -> usersDTO.add(new EmployeeDTO(u)));
 
 				// retrieving print writer to write to the Response body
 				PrintWriter pw = res.getWriter();
@@ -91,8 +93,8 @@ public class UserServlet extends HttpServlet {
 
 			try (PrintWriter pw = res.getWriter()) {
 				// retrieve user by id
-				User u = us.getUserById(id);
-				UserDTO uDTO = new UserDTO(u);
+				Employee u = us.getUserById(id);
+				EmployeeDTO uDTO = new EmployeeDTO(u);
 
 				// convert user to JSON and write to response body
 				pw.write(om.writeValueAsString(uDTO));
@@ -110,7 +112,7 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		InputStream reqBody = req.getInputStream();
 
-		User newUser = om.readValue(reqBody, User.class);
+		Employee newUser = om.readValue(reqBody, Employee.class);
 
 		try {
 			us.createUser(newUser);

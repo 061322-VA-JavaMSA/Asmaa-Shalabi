@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.dtos.UserDTO;
+import com.revature.dtos.EmployeeDTO;
 import com.revature.exceptions.LoginException;
 import com.revature.exceptions.UserNotFoundException;
-import com.revature.models.User;
+import com.revature.models.Employee;
 import com.revature.services.AuthService;
 import com.revature.util.CorsFix;
 
@@ -33,7 +33,7 @@ public class AuthServlet extends HttpServlet {
 		String password = req.getParameter("password");
 		
 		try {
-			User principal = as.login(username, password);
+			Employee principal = as.login(username, password);
 			
 			HttpSession session = req.getSession();
 			session.setAttribute("userId", principal.getId());
@@ -43,7 +43,7 @@ public class AuthServlet extends HttpServlet {
 			String cookie = res.getHeader("Set-Cookie") + "; SameSite=None; Secure";
 			res.setHeader("Set-Cookie", cookie);;
 			
-			UserDTO principalDTO = new UserDTO(principal);
+			EmployeeDTO principalDTO = new EmployeeDTO(principal);
 			try(PrintWriter pw = res.getWriter()){
 				pw.write(om.writeValueAsString(principalDTO));
 				res.setStatus(200);
