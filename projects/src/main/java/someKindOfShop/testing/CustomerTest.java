@@ -33,8 +33,8 @@ public class CustomerTest {
 	@Test
 	public void customerTest() {
 		Customer cu = new Customer();
-		cu.setUname("test");
-		cu.setPass("test");
+		cu.setUname("zxyz");
+		cu.setPass("passTest");
 		cu.setId(2);
 		Customer actual = sut.createUser(cu);
 		Customer expected = new Customer();

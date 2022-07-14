@@ -1,5 +1,5 @@
 if(principal){
-  window.location.href="./index.html";
+  window.location.href="./login.html";
 }
 
 // Setting up event listener for login button
@@ -31,8 +31,9 @@ async function login(){
           Session Storage only allows persistence of Strings so the JS Object is converted to a JSON string using JSON.stringify
        */
        sessionStorage.setItem('principal', JSON.stringify(data));
+       
       // redirect to the homepage on success
-      window.location.href="./index.html";
+      window.location.href="./employee.html";
   } else{
       console.log('Unable to login.')
   }

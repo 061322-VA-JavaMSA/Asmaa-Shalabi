@@ -21,38 +21,49 @@
 20:55:36 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=ehab, pass=, id=8]
 20:58:14 [main] INFO  someKindOfShop.service.CustomerService - Customer: Customer [uname=hady, pass=3333, id=9] was created.
 20:58:14 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=hady, pass=3333, id=9]
-21:02:11 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=aliaa, pass=1234, id=1]
-21:08:34 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-21:13:41 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-21:29:28 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-21:55:22 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-21:57:15 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-21:59:07 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-21:59:56 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:00:42 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:01:53 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:02:40 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:03:45 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:06:43 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:11:26 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:12:02 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:14:40 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:16:12 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:19:03 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:19:54 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:24:39 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:29:22 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:30:29 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:31:26 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:32:18 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-22:38:39 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
 22:38:46 [main] INFO  someKindOfShop.shoppingList.Driver - There's no Offers now!
 22:41:48 [main] INFO  someKindOfShop.shoppingList.Driver - There's no Offers now!
 22:42:16 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
 22:45:44 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=aliaa, pass=1234, id=1]
-22:56:45 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=aliaa, pass=1234, id=1]
-23:01:34 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-23:17:05 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=aliaa, pass=1234, id=1]
-23:18:09 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-23:22:20 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
-23:25:32 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
+
+13:12:24 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=aliaa, pass=1234, id=1]
+13:12:42 [main] INFO  someKindOfShop.shoppingList.Driver - Items [id=6, name=Jam - Strawberry, 20 Ml Jar, price=0, count=0]
+13:12:42 [main] INFO  someKindOfShop.shoppingList.Driver - Items [id=19, name=carpet, price=0, count=0]
+13:13:45 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
+13:14:37 [main] INFO  someKindOfShop.shoppingList.Driver - customer id is:1 item id is: 19 payment:300
+13:14:45 [main] INFO  someKindOfShop.shoppingList.Driver - the sum of payments is 300
+13:15:48 [main] INFO  someKindOfShop.service.CustomerService - Customer: Customer [uname=ehab, pass=5555, id=0] was created.
+13:15:48 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=ehab, pass=5555, id=0]
+13:16:25 [main] INFO  someKindOfShop.service.CustomerService - Customer: Customer [uname=salma, pass=6666, id=11] was created.
+13:16:25 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=salma, pass=6666, id=11]
+13:17:04 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=salma, pass=6666, id=11]
+16:27:42 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=aliaa, pass=1234, id=1]
+16:29:33 [main] INFO  someKindOfShop.service.CustomerService - Customer: Customer [uname=ahmed, pass=0000, id=0] was created.
+16:29:33 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=ahmed, pass=0000, id=0]
+16:30:11 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=aliaa, pass=1234, id=1]
+16:44:24 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
+16:44:30 [main] INFO  someKindOfShop.shoppingList.Driver - customer id is:1 item id is: 19 payment:300
+16:48:30 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
+16:48:37 [main] INFO  someKindOfShop.shoppingList.Driver - customer id is:1 item id is: 19 payment:300
+17:11:12 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
+17:26:33 [main] INFO  someKindOfShop.service.EmployeeService - Employee: Employee [uname=test, pass=test, id=2] was created.
+17:26:38 [main] INFO  someKindOfShop.service.CustomerService - Customer: Customer [uname=test, pass=test, id=2] was created.
+17:27:57 [main] INFO  someKindOfShop.service.EmployeeService - Employee: Employee [uname=test, pass=test, id=2] was created.
+17:28:03 [main] INFO  someKindOfShop.service.CustomerService - Customer: Customer [uname=test, pass=test, id=2] was created.
+17:30:23 [main] INFO  someKindOfShop.service.EmployeeService - Employee: Employee [uname=testEmployee, pass=testPass, id=6] was created.
+17:30:29 [main] INFO  someKindOfShop.service.CustomerService - Customer: Customer [uname=testHere, pass=passTest, id=15] was created.
+17:53:04 [main] INFO  someKindOfShop.service.EmployeeService - Employee: Employee [uname=abcd, pass=tespass, id=7] was created.
+17:53:10 [main] INFO  someKindOfShop.service.CustomerService - Customer: Customer [uname=zxyz, pass=passTest, id=16] was created.
+17:53:25 [main] INFO  someKindOfShop.service.EmployeeService - Employee: Employee [uname=abcd, pass=tespass, id=2] was created.
+17:53:31 [main] INFO  someKindOfShop.service.CustomerService - Customer: Customer [uname=zxyz, pass=passTest, id=2] was created.
+17:53:36 [main] INFO  someKindOfShop.service.EmployeeService - Employee: Employee [uname=abcd, pass=tespass, id=2] was created.
+17:53:42 [main] INFO  someKindOfShop.service.CustomerService - Customer: Customer [uname=zxyz, pass=passTest, id=2] was created.
+17:54:53 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=aliaa, pass=1234, id=1]
+17:56:04 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
+17:58:19 [main] INFO  someKindOfShop.shoppingList.Driver - Employee [uname=asmaa, pass=12345, id=2]
+17:58:26 [main] INFO  someKindOfShop.shoppingList.Driver - customer id is:1 item id is: 19 payment: $300
+17:58:26 [main] INFO  someKindOfShop.shoppingList.Driver - customer id is:1 item id is: 6 payment: $50
+17:59:18 [main] INFO  someKindOfShop.service.EmployeeService - Employee: Employee [uname=abcd, pass=tespass, id=2] was created.
+17:59:40 [main] INFO  someKindOfShop.service.EmployeeService - Employee: Employee [uname=abcd, pass=tespass, id=2] was created.
+18:07:41 [main] INFO  someKindOfShop.service.CustomerService - Customer: Customer [uname=zxyz, pass=passTest, id=2] was created.
+18:08:28 [main] INFO  someKindOfShop.shoppingList.Driver - Customer [uname=aliaa, pass=1234, id=1]

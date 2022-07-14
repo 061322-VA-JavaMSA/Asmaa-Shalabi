@@ -5,9 +5,13 @@ customer_id i);
 drop table if exists employee;
 
 create table if not exists employee(
-id serial primary key,
+id serial  primary key,
 username varchar(50) NOT NULL UNIQUE,
-password varchar(30) not null
+password varchar(30) not null,
+first_name varchar(100),
+last_name varchar(100),
+email varchar(150),
+e_role integer
 );
 drop table if exists customer;
 create table if not exists customer(
@@ -16,8 +20,10 @@ username varchar(50) NOT NULL UNIQUE,
 password varchar(30) not null,
 balance integer
 );
-select * from customer ;
+select * from items ;
+delete from items where i_name = 'pen';
 drop table if exists items;
+delete from items where i_name='Bread - Roll, Whole Wheat';
 
 create table if not exists items(
 id serial primary key,
@@ -32,10 +38,13 @@ id serial primary key,
 c_id integer references customer(id),
 i_id integer references items(id),
 amount integer,
-accepted boolean,
+accepted boolean default null,
 offer_date date
 );
-
+select i.i_name  from items i join offer o on i.customer_id = o.c_id ;
+select * from items where customer_id= 1;
+select c.id, c.i_name, c.owned_state from offer t join items c on t.c_id = c.customer_id where c.customer_id = 1;
+select t.id, t.i_id,  t.c_id  from offer t join items c on t.c_id = c.id where c.id = 1;
 update offer set offer_date = '2022-06-10' where accepted=true;
 insert into offer (c_id, i_id,amount) values (1, 2, 158.28);
 insert into offer (c_id, i_id,amount) values (1, 1, 158.28);
@@ -44,7 +53,13 @@ insert into offer (c_id, i_id,amount) values (3, 2, 158.28);
 insert into offer (c_id, i_id,amount) values (4, 1, 158.28);
 insert into offer (c_id, i_id,amount) values (2, 7, 158.28);
 
-insert into items ( i_name, price) values ('Lid - 10,12,16 Oz', 158.28);
+insert into items ( i_name, price) values ('flask', 200);
+insert into items ( i_name, price) values ('cup', 100);
+insert into items ( i_name, price) values ('table', 600);
+insert into items ( i_name, price) values ('tv', 400);
+insert into items ( i_name, price) values ('car', 2000);
+insert into items ( i_name, price) values ('mobile', 1000);
+insert into items ( i_name, price) values ('carpet', 200);
 insert into items ( i_name, price) values ( 'Bread - Roll, Whole Wheat', 872.93);
 insert into items ( i_name, price) values ('Tuna - Fresh', 931.49);
 insert into items ( i_name, price) values ( 'Parsley - Dried', 393.03);
@@ -148,12 +163,13 @@ select * from employee;
 select t.id, t.i_name, t.owned_state, t.customer_id , c.username from items t join customer c on t.customer_id = c.id where c.id = 2;
 insert into items (i_name, price) values ('hcocking0', '9876');
 insert into items (i_name, price) values ('dvalenta1', '45678');
-select * from items;
+select * from customer;
 insert into employee (username, password) values ('aliaa', '12345');
 select * from offer;
-select amount from offer where offer_date >'2022-06-22' and offer_date <= '2022-06-28';
+select amount from offer where offer_date >'2022-06-22' and offer_date <= DATEADD(now()  , -7,'2022-06-22' );
+select sum(amount) as total from offer where accepted = true;
 
-select * from customer where id = 2;
+select * from customer where id = 1;
 update offer set accepted = 'false' ;
 delete from offer where i_id=2 and accepted !='false';
 delete from offer where i_id=2 and (accepted = false or accepted is null) ;

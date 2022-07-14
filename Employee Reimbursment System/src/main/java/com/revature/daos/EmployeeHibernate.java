@@ -24,9 +24,11 @@ public class EmployeeHibernate implements EmployeeDAO {
 			Transaction tx = s.beginTransaction();
 			int id = (int) s.save(u);
 			u.setId(id);
-			tx.commit();	
+			tx.commit();
+			
 		} catch(ConstraintViolationException e) {
 			//log it
+			
 		}
 		return u;
 	}

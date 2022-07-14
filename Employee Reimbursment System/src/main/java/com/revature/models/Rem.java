@@ -1,18 +1,18 @@
 
 package com.revature.models;
 
-import java.time.LocalDate;
+
+
+import java.sql.Date;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -27,18 +27,25 @@ import jakarta.persistence.TemporalType;
 		private int id;
 		private int amount;
 		private String description;
+		private String status;
 		
-		
+		public String getStatus() {
+			return status;
+		}
+		public void setStatus(String status) {
+			this.status = status;
+		}
 		/*@ManyToOne
 	    @JoinColumn(name = "employee_id")
 		private int employee_id;*/
 		@Temporal(TemporalType.DATE)
 		@Column(name="submitted_date")
-		private LocalDate submitted_date;
+		private Date submitted_date;
 		@Temporal(TemporalType.DATE)
 		@Column(name="resolved_date")
-		private LocalDate ressolved_date;
-		private int manager_id;
+		private Date ressolved_date;
+		private int employee_id;
+		
 		/*@ManyToOne
 	    @JoinColumn(name = "status_id ")
 		private int status_id ;
@@ -71,23 +78,22 @@ import jakarta.persistence.TemporalType;
 		public void setEmployee_id(int employee_id) {
 			this.employee_id = employee_id;
 		}*/
-		public LocalDate getSubmitted_date() {
+		public Date getSubmitted_date() {
 			return submitted_date;
 		}
-		public void setSubmitted_date(LocalDate submitted_date) {
+		public void setSubmitted_date(Date submitted_date) {
+			
 			this.submitted_date = submitted_date;
 		}
-		public LocalDate getRessolved_date() {
+		public Date getRessolved_date() {
 			return ressolved_date;
 		}
-		public void setRessolved_date(LocalDate ressolved_date) {
+		public void setRessolved_date(Date ressolved_date) {
 			this.ressolved_date = ressolved_date;
 		}
-		public int getManager_id() {
-			return manager_id;
-		}
-		public void setManager_id(int manager_id) {
-			this.manager_id = manager_id;
+		
+		public void setEmployee_id(int manager_id) {
+			this.employee_id = manager_id;
 		}
 		/*public int getStatus_id() {
 			return status_id;
@@ -103,8 +109,8 @@ import jakarta.persistence.TemporalType;
 		}*/
 		@Override
 		public int hashCode() {
-			return Objects.hash(amount, description,  id,  manager_id,
-					ressolved_date, submitted_date);
+			return Objects.hash(amount, description,  id,  employee_id,
+					ressolved_date, submitted_date,status);
 		}
 		@Override
 		public boolean equals(Object obj) {
@@ -118,7 +124,8 @@ import jakarta.persistence.TemporalType;
 			return amount == other.amount && Objects.equals(description, other.description)
 					
 					 && id == other.id
-					 && manager_id == other.manager_id
+					 && employee_id == other.employee_id
+							 && status == other.status
 					&& Objects.equals(ressolved_date, other.ressolved_date) 
 					&& Objects.equals(submitted_date, other.submitted_date) ;
 		}
@@ -127,7 +134,11 @@ import jakarta.persistence.TemporalType;
 			return "Rem [id=" + id + ", amount=" + amount + ", description=" + description 
 					+  ", employee_id=" + ""
 					+ ", submitted_date=" + submitted_date + ", ressolved_date=" + ressolved_date + ", manager_id="
-					+ manager_id + ", status_id=" + "" + ", type_id=" + "" + "]";
+					+ employee_id + ", status=" + status + ", type_id=" + "" + "]";
+		}
+		public int getEmployee_id() {
+			
+			return employee_id;
 		}
 		
 		

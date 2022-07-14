@@ -10,8 +10,7 @@
 	import jakarta.persistence.GeneratedValue;
 	import jakarta.persistence.GenerationType;
 	import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 import jakarta.persistence.Table;
 
 	@Entity
@@ -23,13 +22,13 @@ import jakarta.persistence.Table;
 		private int id;
 		@Column(name="username", nullable = false, unique = true)
 		private String username;
-		@Column( nullable = false)
+		@Column( name="password",nullable = false)
 		private String password;
-		@Column(name="first_name", nullable = false, unique = true)
+		@Column(name="first_name", nullable = true, unique = true)
 		private String first_name;
-		@Column(name="last_name", nullable = false, unique = true)
+		@Column(name="last_name", nullable = true, unique = true)
 		private String last_name;
-		@Column(name="email", nullable = false, unique = true)
+		@Column(name="email", nullable = true, unique = true)
 		private String email;
 		@Enumerated(EnumType.STRING)
 		private Role role;
@@ -43,6 +42,7 @@ import jakarta.persistence.Table;
 		}
 
 		public void setFirst_name(String first_name) {
+	
 			this.first_name = first_name;
 		}
 
@@ -72,7 +72,7 @@ import jakarta.persistence.Table;
 
 		public Employee() {
 			super();
-			// TODO Auto-generated constructor stub
+			
 		}
 
 		public int getId() {

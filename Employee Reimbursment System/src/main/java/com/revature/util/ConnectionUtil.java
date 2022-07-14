@@ -22,7 +22,9 @@ public class ConnectionUtil {
 		String password = System.getenv("DB_PASS");
 		
 		if (c == null || c.isClosed()) {
+			
 			c = DriverManager.getConnection(url, username, password);
+			
 		}
 		
 		return c;

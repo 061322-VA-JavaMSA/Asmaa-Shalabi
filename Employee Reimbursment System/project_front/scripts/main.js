@@ -1,5 +1,5 @@
 // Because main.js is the first script added to each HTML page, the logic declared here is shared/reused by all pages
-let apiUrl = 'http://localhost:8080/task-manager';
+let apiUrl = 'http://localhost:8080/app';
 
 // When logged in, retrieves the JSON string representing the logged in user from Session Storage
 let principalString = sessionStorage.getItem('principal');
@@ -14,10 +14,10 @@ if (principalString) {
     principal = JSON.parse(principalString);
 
     if (principal.role === 'ADMIN') {
-        createNavElement('Users', nav_left, './users.html', null);
+        createNavElement('Employee', nav_left, './employee.html', null);
     }
 
-    createNavElement('Tasks', nav_left, './tasks.html', null);
+    createNavElement('WelcomePage', nav_left, './welcome_page.html', null);
 
     createNavElement('Logout', nav_right, null, logout);
 } else {
@@ -37,7 +37,7 @@ async function logout() {
         sessionStorage.clear();
         // clears principal variable representing logged in user
         principal = null;
-        window.location.href="./index.html";
+        window.location.href="./login.html";
     } else {
         console.log('Unable to logout.')
     }

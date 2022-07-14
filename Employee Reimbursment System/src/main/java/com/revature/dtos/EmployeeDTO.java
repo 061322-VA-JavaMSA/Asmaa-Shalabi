@@ -21,7 +21,7 @@ public class EmployeeDTO {
 	
 	public EmployeeDTO() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public EmployeeDTO(Employee e) {
 		id= e.getId();

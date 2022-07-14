@@ -20,4 +20,14 @@
 		<servlet-name>auth-servlet</servlet-name>
 		<url-pattern>/auth</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>rem-servlet</servlet-name>
+		<servlet-class>com.revature.servlets.RemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>rem-servlet</servlet-name>
+		<url-pattern>/rems/*</url-pattern>
+	</servlet-mapping>
+
+	
 </web-app>

@@ -48,7 +48,8 @@ public class UserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		// Specifying that the response content-type will be JSON
 		CorsFix.addCorsHeader(req.getRequestURI(), res);
-		res.addHeader("Content-Type", "application/json");
+		res.setContentType("text/html");
+		//res.addHeader("Content-Type", "application/json");
 
 
 		/*-
@@ -120,7 +121,7 @@ public class UserServlet extends HttpServlet {
 			res.setStatus(201); // Status: Created
 		} catch (UserNotCreatedException e) {
 //			res.setStatus(400);
-			res.sendError(400, "Unable to create new user.");
+			res.sendError(400, "Unable to create new employee.");
 			e.printStackTrace();
 		}
 	}

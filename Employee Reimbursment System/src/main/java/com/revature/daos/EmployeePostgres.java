@@ -83,6 +83,7 @@ public class EmployeePostgres implements EmployeeDAO{
 		Employee u = null;
 		
 		try (Connection c = ConnectionUtil.getConnectionFromEnv();){
+			System.out.println("ana henaa");
 			PreparedStatement ps = c.prepareStatement(sql);
 			
 			ps.setString(1, username); 

@@ -52,18 +52,23 @@ public class Driver {
 			os= new OfferService();
 			int quit = 0;
 			while(quit != 1) {
-			System.out.println("please select 1 for customer or 2 for employee");
+			System.out.println("please select: ");
+			System.out.println("1 for customer  ");
+			System.out.println("2: for employee");
 			String input = scan.next();
 			switch(input) {
 			case "1":
 				customerHere();
-				System.out.println("to quit please enter 1,Otherwise enter any number!");
+				System.out.println("if you sure to quit please enter 1");
+				System.out.println(",Otherwise enter any number!");
 				quit = scan.nextInt();
 				System.out.println("GOOD BYE");
 				break;
 			case "2":
 				emplyeeHere();
-				System.out.println("to quit please enter 1,Otherwise enter any number!");
+				System.out.println("to quit please enter 1");
+				System.out.println(",Otherwise enter any number!");
+			
 				quit = scan.nextInt();
 				System.out.println("GOOD BYE");
 				break;
@@ -93,9 +98,11 @@ public class Driver {
 				System.out.println("Check Out These Items We have Right Now!");
 			List<Items> items= is.getItem();
 			for(Items item: items ) {
-				System.out.println(item);
+				System.out.println("Name: "+item.getName()+ "Item Id :"+ item.getId());
 			}
-			System.out.println("select 1 for making an offer, 2 to see your cart, 3 to see your remaining payments");
+			System.out.println("select 1: for making an offer");
+			System.out.println(" 2 :to see your cart,");
+			System.out.println("3 :to see your remaining payments");
 			String in = scan.next();
 			switch (in){
 			case "1":
@@ -113,7 +120,7 @@ public class Driver {
 					
 				List<Items> cItems = os.getCustomerItem(cs.getUserId(c_username));
 				for (Items i:cItems ) {
-					System.out.println(i);
+					log.info(i);
 					}
 			
 				break;
@@ -123,7 +130,8 @@ public class Driver {
 			default:
 					break;
 					}
-			System.out.println("to logout please enter 1 or 2 to continue");
+			System.out.println("to logout please enter :1");
+			System.out.println(" or 2 to continue");
 			exit = scan.next();
 			}
 		} catch (LoginException e) {
@@ -169,7 +177,12 @@ public class Driver {
 			
 			log.info(eas.login(e_username, e_password));
 			while(!(exit.equals("1"))) {
-			System.out.println("select 1 to add an item OR select 2 to remove item: OR 3 to view offers OR 4 to see all payments OR 5 to calculate all payments");
+			System.out.println("select");
+			System.out.println(" 1: to add an item ");
+			System.out.println(" 2: to remove item");
+			System.out.println(" 3: to view offers ");
+			System.out.println(" 4: to see all payments");
+			System.out.println(" 5 :to calculate all payments");
 			String select = scan.next();
 			switch (select) {
 			case "1":
@@ -194,11 +207,13 @@ public class Driver {
 				for(Offers o: offer ) {
 					System.out.println(o);
 				}
-				System.out.println("select 1 to accept an offer OR 2 to reject an offer");
+				System.out.println("select 1: to accept an offer");
+				System.out.println(" 2: to reject an offer");
 				int pick = scan.nextInt();
 				if(pick == 1) {
-					System.out.println("select customer id and item id for the offer you want to accept");
+					System.out.println("select customer id for the offer you want to accept");
 					int cuId = scan.nextInt();
+					System.out.println("and item id for the offer you want to accept");
 					int itId = scan.nextInt();		    
 					boolean updated = os.updateOffer(cuId, itId,true);
 					if (updated) {
@@ -208,8 +223,10 @@ public class Driver {
 					}
 				}
 				if(pick == 2) {
-					System.out.println("select customer id and item id for the offer you want to reject");
+					System.out.println("select customer id for the offer you want to reject");
+					
 					int cuId = scan.nextInt();
+					System.out.println("and item id for the offer you want to reject");
 					int itId = scan.nextInt();
 					os.updateOffer(cuId, itId,false);
 				}}
@@ -218,11 +235,12 @@ public class Driver {
 				//System.out.println(os.allPayments());
 				List<Offers> acceptedOffer = os.getAcceptedOffers();
 				for(Offers o: acceptedOffer ) {
-					System.out.println("customer id is:"  + o.getCustomerId() + " item id is: " + o.getItemId() + " payment:" + o.getAmount());
+					System.out.println("Customer Id: "+o.getCustomerId()+"Item Id: "+ o.getItemId()+" payment : $"+ o.getAmount());
+					log.info("customer id is:"  + o.getCustomerId() + " item id is: " + o.getItemId() + " payment: $" + o.getAmount());
 				}
 				break;
 			case "5":
-				System.out.println("the sum of payments is " + os.allPayments());
+				log.info("the sum of payments is $" + os.allPayments());
 				
 			}
 			System.out.println("to logout please enter 1 or 2 to continue");

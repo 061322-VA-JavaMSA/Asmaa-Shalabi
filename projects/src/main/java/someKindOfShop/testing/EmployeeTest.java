@@ -39,8 +39,8 @@ public class EmployeeTest {
 	@Test
 	public void employeeTest() {
 		Employee cu = new Employee();
-		cu.setUname("test");
-		cu.setPass("test");
+		cu.setUname("abcd");
+		cu.setPass("tespass");
 		cu.setId(2);
 		Employee actual = sut.createUser(cu);
 		Employee expected = new Employee();
