@@ -48,28 +48,18 @@ public class UserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		// Specifying that the response content-type will be JSON
 		CorsFix.addCorsHeader(req.getRequestURI(), res);
+		res.addHeader("Content-Type", "application/json");
 		res.setContentType("text/html");
-		//res.addHeader("Content-Type", "application/json");
-
-
-		/*-
-		 * Extra path information associated with the URL the client sent when it made this request
-		 * 	- ie: 
-		 * 		- "/1" if /users/1
-		 * 		- null if /users
-		 */
+		
 		String pathInfo = req.getPathInfo();
 
 		// if pathInfo is null, the req should be to /users -> send back all users
 		if (pathInfo == null) {
 
-			/*-
-			 *  HttpSession allows us to retrieve information placed in the session object passed in a previous HttpResponse 
-			 *  	- in this case, the Session is set in the AuthServlet
-			 */
+			
 			HttpSession session = req.getSession();
 
-			if (session.getAttribute("userRole")!= null && session.getAttribute("userRole").equals(Role.ADMIN)) {
+			if (session.getAttribute("userRole")!= null ) {
 				// retrieving users from db using UserService
 				List<Employee> users = us.getUsers();
 				List<EmployeeDTO> usersDTO = new ArrayList<>();
@@ -111,9 +101,13 @@ public class UserServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		CorsFix.addCorsHeader(req.getRequestURI(), res);
+		res.addHeader("Content-Type", "application/json");
 		InputStream reqBody = req.getInputStream();
-
+		
+		
 		Employee newUser = om.readValue(reqBody, Employee.class);
+		
 
 		try {
 			us.createUser(newUser);
@@ -125,4 +119,29 @@ public class UserServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		CorsFix.addCorsHeader(req.getRequestURI(), res);
+		res.addHeader("Content-Type", "application/json");
+		InputStream reqBody = req.getInputStream();
+		PrintWriter pw = res.getWriter();
+		Employee upUser = om.readValue(reqBody, Employee.class);
+		
+		try {
+			us.updateUser(upUser);
+			pw.write(om.writeValueAsString(upUser));
+			res.setStatus(201); // Status: Created
+		} catch (UserNotCreatedException e) {
+//			res.setStatus(400);
+			res.sendError(400, "Unable to create new employee.");
+			e.printStackTrace();
+		}
+	}
+	@Override
+	protected void doOptions(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		CorsFix.addCorsHeader(req.getRequestURI(),res);
+		res.addHeader("Content-Type", "application/json");
+		super.doOptions(req, res);
+	}
+	
 }

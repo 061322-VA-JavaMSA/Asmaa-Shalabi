@@ -1,7 +1,9 @@
 package com.revature.daos;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
@@ -87,6 +89,31 @@ public class EmployeeHibernate implements EmployeeDAO {
 		
 		return users;
 	}
+
+	@Override
+	public Employee updateEmployee(Employee e) {
+		Employee x = new Employee();
+		try(Session s = HibernateUtil.getSessionFactory().openSession()) {
+			Transaction tx = s.beginTransaction();
+			
+			Employee emp = (Employee) s.get(Employee.class, e.getId());
+			
+			emp.setUsername(e.getUsername());
+			emp.setFirst_name(e.getFirst_name());
+			emp.setLast_name(e.getLast_name());
+			emp.setEmail(e.getEmail());
+			emp.setRole(e.getRole());
+			emp.setPassword(e.getPassword());
+			s.merge(emp);
+			tx.commit();
+			x = emp;
+			System.out.println(x);
+		} catch (HibernateException e1) {
+
+			e1.printStackTrace();
+			
+		}
+		return x;}
 
 	
 

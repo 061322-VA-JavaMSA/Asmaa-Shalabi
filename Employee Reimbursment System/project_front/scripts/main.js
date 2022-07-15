@@ -15,6 +15,7 @@ if (principalString) {
 
     if (principal.role === 'ADMIN') {
         createNavElement('Employee', nav_left, './employee.html', null);
+        createNavElement('Employee ERS', nav_left, './employeeInput.html', null);
     }
 
     createNavElement('WelcomePage', nav_left, './welcome_page.html', null);

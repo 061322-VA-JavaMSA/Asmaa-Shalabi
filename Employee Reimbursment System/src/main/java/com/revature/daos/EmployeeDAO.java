@@ -8,8 +8,9 @@ import com.revature.models.Employee;
 public interface EmployeeDAO {
 	Employee insertEmployee(Employee e);
 	Employee getUserById(int id);
-
+   
 	List<Employee> getUsers();
 	Employee getUserByUsername(String username);
+	Employee updateEmployee(Employee e);
 	
 }

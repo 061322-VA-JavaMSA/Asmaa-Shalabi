@@ -7,7 +7,7 @@ async function createRem(){
   let amount = document.getElementById('amount').value;
   let description = document.getElementById('description').value;
   let emId = principal.id;
-  console.log(amount);
+
   // let response = await fetch(`${apiUrl}/rems`,{
   //     method: 'POST',
   //     credentials: 'include',
@@ -28,15 +28,17 @@ async function createRem(){
     'employee_id': emId,
     
 }
-console.log(object); // The data has been sent
+ //The data has been sent
 let response = await fetch(`${apiUrl}/rems`, {
     method: 'POST',
     credentials: 'include',
     headers: {
+      
         'Content-Type': 'application/x-www-form-urlencoded'
     },
     body: JSON.stringify(object)
 })
+
 
   if(response.status > 200 && response.status < 205){
     //  let data = await response.json();

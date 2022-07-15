@@ -26,7 +26,14 @@ public class UserService {
 		}
 		return createdUser;
 	}
-	
+	public Employee updateUser(Employee u) throws UserNotCreatedException {
+		// by default, created account will be basic Users
+		
+		
+		
+			
+		return ud.updateEmployee(u);
+	}
 	public Employee getUserById(int id) throws UserNotFoundException {
 		Employee u = ud.getUserById(id);
 		if (u == null) {
@@ -38,6 +45,10 @@ public class UserService {
 	public List<Employee> getUsers() {
 		List<Employee> users = ud.getUsers();
 		return users;
+	}
+	public Employee getUserByUsername(String string) {
+	Employee e=ud.getUserByUsername(string);
+		return e;
 	}
 
 }

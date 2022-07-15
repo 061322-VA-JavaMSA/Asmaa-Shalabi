@@ -66,7 +66,7 @@ public class RemServlet extends HttpServlet {
 			 */
 			HttpSession session = req.getSession();
 
-			if (session.getAttribute("userRole")!= null && session.getAttribute("userRole").equals(Role.ADMIN)) {
+			if (session != null) {
 				// retrieving users from db using UserService
 				List<Rem> users = us.getRems();
 				List<RemDTO> usersDTO = new ArrayList<>();
@@ -122,5 +122,11 @@ public class RemServlet extends HttpServlet {
 			res.sendError(400, "Unable to create new rem.");
 			e.printStackTrace();
 		}
+	}
+	@Override
+	protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		CorsFix.addCorsHeader(req.getRequestURI(), resp);
+		super.doOptions(req, resp);
+		
 	}
 }

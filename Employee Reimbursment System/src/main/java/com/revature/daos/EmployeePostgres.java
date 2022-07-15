@@ -48,6 +48,36 @@ public class EmployeePostgres implements EmployeeDAO{
 		
 		return u;
 	}
+	@Override
+    public Employee updateEmployee(Employee u) {
+//		
+
+//		u.setId(-1);
+//		
+//		String sql = "update employee set username=?,password=?,first_name=? ,last_name=? ,email=? where id=?;";
+//		try(Connection c = ConnectionUtil.getConnectionFromEnv()){
+//			PreparedStatement ps = c.prepareStatement(sql);
+//			ps.setString(1, u.getUsername());
+//			ps.setString(2, u.getPassword());
+//			ps.setString(3,u.getFirst_name());
+//			ps.setString(4,u.getLast_name());
+//			ps.setString(5, u.getEmail());
+//			
+//			
+//			ps.setInt(6,u.getId());
+//			
+//			ResultSet rs = ps.executeQuery(); 
+//			if(rs.next()) {
+//				u.setId(rs.getInt("id"));
+//			}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+		
+		return u;
+	}
+
 
 	@Override
 	public Employee getUserById(int id){
@@ -83,7 +113,7 @@ public class EmployeePostgres implements EmployeeDAO{
 		Employee u = null;
 		
 		try (Connection c = ConnectionUtil.getConnectionFromEnv();){
-			System.out.println("ana henaa");
+			
 			PreparedStatement ps = c.prepareStatement(sql);
 			
 			ps.setString(1, username); 

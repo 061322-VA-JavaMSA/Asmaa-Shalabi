@@ -28,7 +28,7 @@ public class AuthServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
 		CorsFix.addCorsHeader(req.getRequestURI(), res);
-		
+		res.addHeader("Content-Type", "application/json");
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		
@@ -60,6 +60,7 @@ public class AuthServlet extends HttpServlet {
 	
 	protected void doDelete(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
 		CorsFix.addCorsHeader(req.getRequestURI(), res);
+		res.addHeader("Content-Type", "application/json");
 		
 		HttpSession session = req.getSession();
 		
@@ -71,6 +72,7 @@ public class AuthServlet extends HttpServlet {
 	@Override
 	protected void doOptions(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		CorsFix.addCorsHeader(req.getRequestURI(),res);
+		res.addHeader("Content-Type", "application/json");
 		super.doOptions(req, res);
 	}
 }

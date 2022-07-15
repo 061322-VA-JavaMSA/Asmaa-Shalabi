@@ -31,9 +31,10 @@ async function login(){
           Session Storage only allows persistence of Strings so the JS Object is converted to a JSON string using JSON.stringify
        */
        sessionStorage.setItem('principal', JSON.stringify(data));
-       
       // redirect to the homepage on success
-      window.location.href="./employee.html";
+      
+      window.location.href="./welcome_page.html";
+
   } else{
       console.log('Unable to login.')
   }

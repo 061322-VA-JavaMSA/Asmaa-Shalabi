@@ -17,6 +17,9 @@ public class EmployeeDTO {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private String password;
+	
+
 	private Role role;
 	
 	public EmployeeDTO() {
@@ -42,6 +45,12 @@ public class EmployeeDTO {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getUsername() {
@@ -79,14 +88,15 @@ public class EmployeeDTO {
 	public Role getRole() {
 		return role;
 	}
-
-	
-
+	@Override
+	public String toString() {
+		return "EmployeeDTO [id=" + id + ", username=" + username + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", password=" + password + ", role=" + role + "]";
+	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, firstName, id, lastName, role, username);
+		return Objects.hash(email, firstName, id, lastName, password, role, username);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -97,16 +107,12 @@ public class EmployeeDTO {
 			return false;
 		EmployeeDTO other = (EmployeeDTO) obj;
 		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName) && id == other.id
-				&& Objects.equals(lastName, other.lastName) && Objects.equals(role, other.role)
-				&& Objects.equals(username, other.username);
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
+				&& role == other.role && Objects.equals(username, other.username);
 	}
 
-	@Override
-	public String toString() {
-		return "EmployeeDTO [id=" + id + ", username=" + username + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", email=" + email + ", role=" + role + "]";
-	}
 	
+
 	
 	
 }
